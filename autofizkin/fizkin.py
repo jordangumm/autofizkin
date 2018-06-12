@@ -334,6 +334,7 @@ def subset_input(input_files, out_dir, max_seqs):
             out_file = os.path.join(subset_dir, os.path.basename(input_file))
             subset_files.append(out_file)
             if not os.path.isfile(out_file):
+                print(tmpl.format(out_file, max_seqs, input_file))
                 jobfile.write(tmpl.format(out_file, max_seqs, input_file))
 
         if not run_job_file(jobfile.name, msg='Subsetting input files'):

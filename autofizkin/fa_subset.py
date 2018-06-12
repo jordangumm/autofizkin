@@ -46,6 +46,8 @@ def main():
     input_format = args.input_format
     output_format = args.output_format
 
+    print('start')
+
     if not os.path.isfile(infile):
         print('Input file "{}" is not valid'.format(infile))
         sys.exit(1)
@@ -61,14 +63,17 @@ def main():
     if not os.path.isdir(out_dir):
         os.mkdir(out_dir)
 
+    print('counting seqs')
     count_seqs = 0
     for record in SeqIO.parse(infile, input_format):
         count_seqs += 1
+    print('end counting seqs')
 
     if count_seqs == 0:
         print('Found no records in "{}"'.format(infile))
         sys.exit(1)
 
+    print('opening out file')
     out_file = os.path.join(out_dir, os.path.basename(infile))
     take_pct = round(num_seqs / count_seqs, 4) if count_seqs > num_seqs else 1
     num_taken = 0
