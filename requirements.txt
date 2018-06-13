@@ -6,3 +6,4 @@ pytz==2017.2
 scipy==0.19.1
 six==1.10.0
 biopython==1.70
+https://github.com/jordangumm/fasth/archive/0.1.2.tar.gz

@@ -9,6 +9,8 @@ import os
 import sys
 from Bio import SeqIO
 
+from fasth import fasth
+
 # --------------------------------------------------
 def get_args():
     """get args"""
@@ -61,12 +63,11 @@ def main():
         sys.exit(1)
 
     if not os.path.isdir(out_dir):
-        os.mkdir(out_dir)
+        os.makedirs(out_dir)
 
     print('counting seqs')
-    count_seqs = 0
-    for record in SeqIO.parse(infile, input_format):
-        count_seqs += 1
+    print(infile)
+    count_seqs = fasth.estimate_reads(input_file=infile)
     print('end counting seqs')
 
     if count_seqs == 0:
