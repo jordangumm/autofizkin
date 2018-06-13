@@ -76,6 +76,20 @@ def main(query, output_dp, kmer_size, max_seqs, hash_size, flux, account, ppn, m
     fp = os.path.dirname(os.path.abspath(__file__)).replace('bin','')
     environment = os.path.join(fp, 'dependencies/miniconda/bin/activate')
 
+    if flux:
+        if not account: sys.exit('To attempt a submission to the flux cluster you need to supply an --account/-a')
+        full_dp = os.path.dirname(os.path.abspath(__file__))
+        cmd_fp = os.path.join(full_dp, sys.argv[0])
+
+        args = sys.argv
+        args.remove('--flux')
+        args.remove(sys.argv[0])
+        args = ' '.join(args)
+        qsub = 'qsub -N {} -A {} -q fluxod -l nodes=1:ppn={}:largemem,mem={}mb,walltime={}'.format(
+                                    cmd_fp.split('/')[-1].split('.')[0], account, ppn, mem, walltime)
+        call('echo "source {} && python {} {}" | {}'.format(environment, cmd_fp, args, qsub), shell=True)
+        sys.exit('Launched via Flux')
+
     r = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
     log_output_dp = os.path.join(output_dp, 'logs/runner_{}'.format(r))
     runner = Runner(query=list(query), output_dp=output_dp, kmer_size=kmer_size, env_fp=environment,
