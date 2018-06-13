@@ -28,7 +28,6 @@ pip install https://github.com/Illumina/pyflow/releases/download/v1.1.17/pyflow-
 conda create -n py3 python=3.6
 
 source activate py3
-
 pip install requirements.txt
 conda install -c r r
 Rscript install.r 
