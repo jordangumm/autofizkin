@@ -10,7 +10,7 @@
 
 
 # install miniconda for local independent package management
-wget https://repo.continuum.io/archive/Anaconda2-4.3.1-Linux-x86_64.sh -O miniconda.sh
+wget https://repo.anaconda.com/archive/Anaconda2-5.2.0-Linux-x86_64.sh -O miniconda.sh
 mkdir dependencies
 chmod 775 miniconda.sh
 chmod 775 dependencies
@@ -31,3 +31,5 @@ source activate py3
 pip install requirements.txt
 conda install -c r r
 Rscript install.r 
+
+conda install -c bioconda jellyfish

@@ -1,0 +1,26 @@
+package:
+  name: jellyfish
+  version: "2.2.7"
+
+source:
+  url: https://github.com/gmarcais/Jellyfish/releases/download/v2.2.7/jellyfish-2.2.7.tar.gz
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - autoconf
+    - automake
+    - m4
+    - gettext
+    - libtool
+    - pkg-config
+  run:
+
+test:
+  commands:
+    - jellyfish --version 2>&1 > /dev/null
+
+about:
+  home: http://www.genome.umd.edu/jellyfish.html
+  license: GPLv3
+  summary: Jellyfish is a tool for fast, memory-efficient counting of k-mers in DNA. A k-mer is a substring of length k, and counting the occurrences of all such substrings is a central step in many analyses of DNA sequence

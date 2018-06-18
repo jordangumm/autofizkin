@@ -83,8 +83,9 @@ class Runner(FluxWorkflowRunner):
         reject_dp = os.path.join(self.output_dp, 'reads_rejected')
         if not os.path.exists(reject_dp): os.makedirs(reject_dp)
 
-        kmer_files = [os.path.join(kmer_dp, f) for f in os.listdir(kmer_dp) if os.path.isfile(os.path.join(kmer_dp, f))]
-        if not kmer_files: sys.exit('No kmer files to compare!')
+        # kmer_files check needs to occur in scheduled process as they won't be there in the beginning
+        #kmer_files = [os.path.join(kmer_dp, f) for f in os.listdir(kmer_dp) if os.path.isfile(os.path.join(kmer_dp, f))]
+        #if not kmer_files: sys.exit('No kmer files to compare!')
 
         return
 
