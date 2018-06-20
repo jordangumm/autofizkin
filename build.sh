@@ -20,7 +20,7 @@ rm miniconda.sh
 # activate conda virtual environment
 source ./dependencies/miniconda/bin/activate
 
-pip install click
+conda install click
 
 # install pyflow for automated task management
 pip install https://github.com/Illumina/pyflow/releases/download/v1.1.17/pyflow-1.1.17.tar.gz
@@ -30,4 +30,5 @@ conda create -n py3 python=3.6
 source activate py3
 pip install requirements.txt
 conda install -c r r
+conda install click
 Rscript install.r 

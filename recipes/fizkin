@@ -9,8 +9,8 @@ Include:
 # ========================
 %post
     apt-get update
-    apt-get install -y locales git build-essential autoconf libtool \
-           pkg-config yaggo wget graphviz curl libcurl4-openssl-dev libssl-dev
+    apt-get install -y -f locales git build-essential libssl-dev autoconf libtool \
+           pkg-config yaggo wget graphviz curl libcurl4-openssl-dev zlib1g-dev
     
 %environment
     export PATH=/usr/local/bin:$PATH
@@ -41,7 +41,7 @@ Include:
     git clone https://github.com/hurwitzlab/Jellyfish.git jellyfish
     cd jellyfish/examples/query_per_sequence_mode
     make
-    cp query_per_sequence /usr/local/bin && cd ..
+    cp query_per_sequence /usr/local/bin && cd ../../..
 
     git clone https://github.com/jordangumm/autofizkin.git
     cd autofizkin
@@ -51,8 +51,5 @@ Include:
     fizkin=/scif/apps/fizkin/autofizkin/runner.py
     export fizkin
 
-    activate=/scif/apps/fizkin/autofizkin/dependencies/miniconda/bin/activate
-    export activate
-
 %apprun fizkin
-    source $activate && source activate py3 && python $fizkin "$@"
+    source /scif/apps/fizkin/autofizkin/dependencies/miniconda/bin/activate && source activate py3 && python $fizkin "$@"
