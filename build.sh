@@ -31,5 +31,3 @@ source activate py3
 pip install requirements.txt
 conda install -c r r
 Rscript install.r 
-
-conda install -c bioconda jellyfish
