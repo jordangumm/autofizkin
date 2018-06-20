@@ -38,12 +38,16 @@ Include:
 # fizkin
 # ========================
 %appinstall fizkin
-    git clone https://github.com/hurwitzlab/Jellyfish.git jellyfish
+    if [ ! -d "jellyfish" ]; then
+        git clone https://github.com/hurwitzlab/Jellyfish.git jellyfish
+    fi
     cd jellyfish/examples/query_per_sequence_mode
     make
     cp query_per_sequence /usr/local/bin && cd ../../..
 
-    git clone https://github.com/jordangumm/autofizkin.git
+    if [ ! -d "autofizkin" ]; then
+        git clone https://github.com/jordangumm/autofizkin.git
+    fi
     cd autofizkin
     ./build.sh
 
