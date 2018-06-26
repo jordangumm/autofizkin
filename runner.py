@@ -84,10 +84,8 @@ class Runner(FluxWorkflowRunner):
         if not os.path.exists(reject_dp): os.makedirs(reject_dp)
 
         # kmer_files check needs to occur in scheduled process as they won't be there in the beginning
-        #kmer_files = [os.path.join(kmer_dp, f) for f in os.listdir(kmer_dp) if os.path.isfile(os.path.join(kmer_dp, f))]
-        #if not kmer_files: sys.exit('No kmer files to compare!')
-
-        #return
+        kmer_files = [os.path.join(kmer_dp, f) for f in os.listdir(kmer_dp) if os.path.isfile(os.path.join(kmer_dp, f))]
+        if not kmer_files: sys.exit('No kmer files to compare!')
 
         """ TODO - rewrite query_per_sequence or only run this in a container """
         for i, kmer_fp in enumerate(kmer_files):
