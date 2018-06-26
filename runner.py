@@ -104,9 +104,17 @@ class Runner(FluxWorkflowRunner):
                 cmd += 'query_per_sequence 1 10 {} {} 1>{} 2>{}'.format(kmer_fp, subset_fp, keep_fp, reject_fp)
                 self.addTask('kmdr_count_{}'.format(i*2+k), nCores=self.max_ppn, memMb=self.max_mem,
                                                                   command=cmd, dependencies=job_names)
-                
 
-            
+        # 4. count kept reads
+        base_mode_dp = os.path.join(self.output_dp, 'mode')
+        for keep_dn in os.listdir(keep_dp):
+            mode_dp = os.path.join(base_mode_dp, keep_dn)
+
+            for kept_fn in os.listdir(os.path.join(keep_dp, keep_dn):
+                mode_fp = os.path.join(mode_dp, kept_fn)
+                cmd = "grep -ce '^>' {} > {}\n".format(os.path.join(keep_dp, kept_fn), mode_fp)
+                self.addTask('grep_{}_{}'.format(keep_dn, kept_fn), nCores=1, memMb=768, command=cmd, dependencies=job_names)
+                job_names.append('grep_{}_{}'.format(keep_dn, kept_fn)
         
 
 

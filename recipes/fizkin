@@ -10,7 +10,7 @@ Include:
 %post
     apt-get update
     apt-get install -y -f locales git build-essential libssl-dev autoconf libtool \
-           pkg-config yaggo wget graphviz curl libcurl4-openssl-dev zlib1g-dev
+           pkg-config yaggo wget graphviz curl libcurl4-openssl-dev zlib1g-dev vim
     
 %environment
     export PATH=/usr/local/bin:$PATH
